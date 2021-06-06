@@ -1,1 +1,74 @@
-<p>register works!</p>
+<div class="text-center">
+  <div class="form-signin">
+    <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="guardar()">
+      <h1 class="h3 mb-3 fw-normal">Iniciar sesion</h1>
+
+      <div class="form-floating">
+        <input
+          formControlName="first_name"
+          type="text"
+          class="form-control"
+          placeholder="texto"
+        />
+        <label for="floatingInput">Nombres</label>
+      </div>
+
+      <div class="form-floating">
+        <input
+          formControlName="last_name"
+          type="text"
+          class="form-control"
+          placeholder="texto"
+        />
+        <label for="floatingInput">Apellidos</label>
+      </div>
+
+      <div class="form-floating">
+        <input
+          formControlName="email"
+          type="email"
+          class="form-control"
+          placeholder="name@example.com"
+        />
+        <label for="floatingInput">Email address</label>
+      </div>
+
+      <div class="form-floating">
+        <input
+          type="password"
+          formControlName="password"
+          class="form-control mb-0"
+          placeholder="Password"
+        />
+        <label for="floatingPassword">Password</label>
+      </div>
+
+      <div class="form-floating">
+        <input
+          type="password"
+          formControlName="password_confirm"
+          class="form-control mb-0"
+          placeholder="Password"
+        />
+        <label for="floatingPassword">Password confirm</label>
+      </div>
+
+      <div class="form-floating">
+        <input
+          type="number"
+          formControlName="role_id"
+          class="form-control mb-0"
+          placeholder="Password"
+        />
+        <label for="floatingPassword">Rol id</label>
+      </div>
+      <button
+        class="w-100 btn btn-lg btn-primary"
+        [disabled]="miFormulario.invalid"
+        type="submit"
+      >
+        Sign in
+      </button>
+    </form>
+  </div>
+</div>
