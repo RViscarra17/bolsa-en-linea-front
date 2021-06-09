@@ -32,11 +32,6 @@
             ],
             "scripts": [
               {
-                "input": "src/assets/js/dashboard.js",
-                "bundleName": "dashboard",
-                "inject": true
-              },
-              {
                 "input": "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
                 "bundleName": "bsJs",
                 "inject": true

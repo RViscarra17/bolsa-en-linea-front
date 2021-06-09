@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from '@angular/router';
 
 import { AuthService } from "./../../services/auth.service";
 
@@ -10,24 +11,32 @@ import { AuthService } from "./../../services/auth.service";
 })
 export class LoginComponent implements OnInit {
   miFormulario: FormGroup = this.fb.group({
-    email: ["", [Validators.required, Validators.email]],
-    password: ["", Validators.required],
+    correo: ["example@example.com", [Validators.required, Validators.email]],
+    password: ["hehexd123", Validators.required],
   });
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 
   guardar() {
     const data = { ...this.miFormulario.value };
+    
 
     this.authService.login(data).subscribe(
-      ( _ ) => {
-        this.authService.user().subscribe((resp) => console.log(resp));
+      ( resp ) => {
+        // console.log(resp);
+        console.log(this.authService.token);
+        
+        
+        this.authService.user().subscribe((resp) => {
+          console.log(this.authService.usuario);
+          this.router.navigate(['/admin/usuarios/prueba']);
+        });
       },
       (error) => console.log(error)
     );
 
-    this.miFormulario.reset();
+    // this.miFormulario.reset();
   }
 }
