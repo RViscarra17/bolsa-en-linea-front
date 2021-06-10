@@ -5,8 +5,12 @@ import { PruebaComponent } from "./pages/prueba/prueba.component";
 
 const routes: Routes = [
   {
-  /*   path: "",
+    path: "",
     children: [
+      {
+        path: "",
+        component: ListarComponent,
+      },
       {
         path: "prueba",
         component: PruebaComponent,
@@ -15,18 +19,9 @@ const routes: Routes = [
         path: "**",
         redirectTo: "prueba",
       },
-    ], */
-    path:"prueba",
-    component: PruebaComponent
-  },
-  {
-    path:"",
-    component: ListarComponent
-  },
-  {
-    path:"**",
-    redirectTo: ""
+    ],
   }
+
 ];
 
 @NgModule({
