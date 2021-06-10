@@ -7,12 +7,12 @@ const routes: Routes = [
     path: "",
     children: [
       {
-        path: "prueba",
+        path: "",
         component: PruebaComponent,
       },
       {
         path: "**",
-        redirectTo: "prueba",
+        redirectTo: "",
       },
     ],
   },
