@@ -12,7 +12,7 @@ import { AuthService } from "./../../services/auth.service";
 export class LoginComponent implements OnInit {
   miFormulario: FormGroup = this.fb.group({
     correo: ["example@example.com", [Validators.required, Validators.email]],
-    password: ["hehexd123", Validators.required],
+    password: ["password", Validators.required],
   });
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {}

@@ -1,8 +1,8 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-import { Observable } from "rxjs";
-import { tap } from "rxjs/operators";
+import { Observable, of } from "rxjs";
+import { catchError, map, tap } from "rxjs/operators";
 
 import { Login, User, UserR, Usuario, Toke } from "../interface/login";
 
@@ -11,7 +11,7 @@ import { Login, User, UserR, Usuario, Toke } from "../interface/login";
 })
 export class AuthService {
   private _url = "http://localhost:8000/api";
-  private _token!: string;
+  private _token: string = localStorage.getItem('token') || '';
   private _user: Usuario = {};
 
   get usuario() {
@@ -34,30 +34,49 @@ export class AuthService {
     );
   }
 
-  user(): Observable<Usuario> {
+  user(): Observable<boolean> {
+    const headers = new HttpHeaders()
+      .set("Accept", "application/json")
+      .set("Authorization", `Bearer ${this._token || ""}`);
+
     return this.http
       .get<Usuario>(`${this._url}/user`, {
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${this._token}`,
-        },
+        headers,
       })
       .pipe(
         tap((usuario) => {
+          // console.log(usuario);
+          
           this._user = usuario;
-        })
+        }),
+        map(( _ ) => {
+          return true;
+        }),
+        catchError((error) => of(false))
       );
   }
 
-  // logout(): Observable<string> {
-  //   return this.http.post<string>(
-  //     `${this._url}/logout`,
-  //     {},
-  //     {
-  //       withCredentials: true,
-  //     }
-  //   );
-  // }
+  auth(): Observable<boolean> {
+    const headers = new HttpHeaders()
+      .set("Accept", "application/json")
+      .set("Authorization", `Bearer ${this._token || ""}`);
+
+    return this.http
+      .get<Usuario>(`${this._url}/user`, {
+        headers,
+      })
+      .pipe(
+        // tap((usuario) => {
+        //   // console.log(usuario);
+          
+        //   this._user = usuario;
+        // }),
+        map(( _ ) => {
+          return false;
+        }),
+        catchError((error) => of(true))
+      );
+  }
 
   register(data: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(`${this._url}/register`, data);
@@ -73,6 +92,10 @@ export class AuthService {
           Authorization: `Bearer ${this._token}`,
         },
       }
+    ).pipe(
+      tap(( _ ) => {
+        localStorage.removeItem('token');
+      })
     );
   }
 }

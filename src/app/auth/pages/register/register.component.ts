@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "../../services/auth.service";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: "app-register",
@@ -27,11 +28,18 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   guardar() {
-    const data = { ...this.miFormulario.value };
-    this.auSer.register(data).subscribe((_) => {
-      this.router.navigate(["./login"]);
-    });
+    // const data = { ...this.miFormulario.value };
+    // this.auSer.register(data).subscribe((_) => {
+    //   this.router.navigate(["./login"]);
+    // });
 
-    this.miFormulario.reset();
+    Swal.fire({
+      title: 'Error!',
+      text: 'Do you want to continue',
+      icon: 'error',
+      confirmButtonText: 'Cool'
+    })
+
+    // this.miFormulario.reset();
   }
 }

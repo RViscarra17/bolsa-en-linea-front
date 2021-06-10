@@ -1,40 +1,50 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { HomeComponent } from './shared/home/home.component';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { AppComponent } from "./app.component";
+import { AuthTokenGuard } from "./auth/guards/auth-token.guard";
+import { HomeGuard } from "./auth/guards/home.guard";
+import { HomeComponent } from "./shared/home/home.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: HomeComponent,
     // pathMatch: 'full',
+    canActivate: [AuthTokenGuard],
+    canLoad: [AuthTokenGuard],
+    canActivateChild: [AuthTokenGuard],
     children: [
       {
-        path: 'admin',
-        loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule)
+        path: "admin",
+        loadChildren: () =>
+          import("./admin/admin.module").then((m) => m.AdminModule),
       },
       {
-        path: 'user',
-        loadChildren: () => import('./aspirante/aspirante.module').then((m) => m.AspiranteModule)
+        path: "user",
+        loadChildren: () =>
+          import("./aspirante/aspirante.module").then((m) => m.AspiranteModule),
       },
       {
-        path: 'empresa',
-        loadChildren: () => import('./empresa/empresa.module').then((m) => m.EmpresaModule)
+        path: "empresa",
+        loadChildren: () =>
+          import("./empresa/empresa.module").then((m) => m.EmpresaModule),
       },
-    ]
+    ],
   },
   {
-    path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule)
+    path: "auth",
+    loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
+    canActivate: [HomeGuard],
+    // canLoad: [HomeGuard],
   },
   {
-    path: '**',
-    redirectTo: 'auth'
-  }
+    path: "**",
+    redirectTo: "auth",
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
