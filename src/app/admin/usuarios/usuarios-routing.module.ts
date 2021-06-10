@@ -1,10 +1,11 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { ListarComponent } from "./pages/listar/listar.component";
 import { PruebaComponent } from "./pages/prueba/prueba.component";
 
 const routes: Routes = [
   {
-    path: "",
+  /*   path: "",
     children: [
       {
         path: "prueba",
@@ -14,8 +15,18 @@ const routes: Routes = [
         path: "**",
         redirectTo: "prueba",
       },
-    ],
+    ], */
+    path:"prueba",
+    component: PruebaComponent
   },
+  {
+    path:"",
+    component: ListarComponent
+  },
+  {
+    path:"**",
+    redirectTo: ""
+  }
 ];
 
 @NgModule({
