@@ -79,7 +79,11 @@ export class AuthService {
   }
 
   register(data: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(`${this._url}/register`, data);
+    return this.http.post<Usuario>(`${this._url}/register`, data, {
+      headers: {
+        Accept: "application/json",
+      }
+    });
   }
 
   logout(): Observable<string> {
