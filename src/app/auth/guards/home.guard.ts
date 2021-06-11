@@ -20,9 +20,6 @@ export class HomeGuard implements CanActivate, CanLoad {
   constructor(private auS: AuthService, private router: Router) {}
 
   canActivate(): Observable<boolean> | boolean {
-    // console.log(this.auS.auth());
-
-    // return true;
     return this.auS.auth().pipe(
       tap((valido) => {
         if (!valido) {
@@ -31,6 +28,7 @@ export class HomeGuard implements CanActivate, CanLoad {
       })
     );
   }
+  
   canLoad(): Observable<boolean> | boolean {
     return this.auS.user().pipe(
       tap((valido) => {

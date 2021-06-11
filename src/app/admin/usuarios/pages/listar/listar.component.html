@@ -17,7 +17,7 @@
           <td>{{user.nombres}}</td>
           <td>{{user.apellidos}}</td>
           <td>{{user.correo}}</td>
-          <td *ngIf="user.es_admin == 1; else elseBlock">Admin</td>
+          <td><span *ngIf="user.es_admin == 1; else elseBlock">Admin</span></td>
           <ng-template #elseBlock>Otro</ng-template>
           <td>
             <a
@@ -38,7 +38,7 @@
               data-toggle="tooltip"
               data-placement="bottom"
               title="Eliminar usuario"
-              (click)="borrarUsuario(user)"
+              (click)="borrarUsuario(user, $event.target)"
             ><i class="	fas fa-trash"></i>
             </button>
           </td>
