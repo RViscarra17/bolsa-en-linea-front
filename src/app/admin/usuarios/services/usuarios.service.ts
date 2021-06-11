@@ -1,13 +1,14 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { environment } from "src/environments/environment";
 import { Usuario } from "../interfaces/usuario";
 
 @Injectable({
   providedIn: "root",
 })
 export class UsuariosService {
-  private _url = "http://localhost:8000/api";
+  private _url = environment.apiUrl;
   private _token = localStorage.getItem("token") || "";
 
   constructor(private http: HttpClient) {}

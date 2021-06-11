@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 
 import { Observable, of } from "rxjs";
 import { catchError, map, tap } from "rxjs/operators";
+import { environment } from "src/environments/environment";
 
 import { Login, User, UserR, Usuario, Toke } from "../interface/login";
 
@@ -10,7 +11,7 @@ import { Login, User, UserR, Usuario, Toke } from "../interface/login";
   providedIn: "root",
 })
 export class AuthService {
-  private _url = "http://localhost:8000/api";
+  private _url = environment.apiUrl;
   private _token: string = localStorage.getItem('token') || '';
   private _user: Usuario = {};
 
