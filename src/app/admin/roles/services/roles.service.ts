@@ -1,31 +1,47 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/internal/Observable';
-import { Rol } from '../interfaces/rol';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs/internal/Observable";
+import { environment } from "src/environments/environment";
+import { Rol } from "../interfaces/rol";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class RolesService {
-  private _url = "http://localhost:8000/api";
+  private _url = environment.apiUrl;
+  private _token = localStorage.getItem("token") || "";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getRoles(): Observable<Rol[]>{
-    return this.http.get<Rol[]>(`${ this._url}/roles`);
+  getRoles(): Observable<Rol[]> {
+    const headers = new HttpHeaders()
+      .set("Accept", "application/json")
+      .set("Authorization", `Bearer ${this._token || ""}`);
+    return this.http.get<Rol[]>(`${this._url}/roles`, { headers });
   }
-  getRolPorId( id: string ):Observable<Rol> {
-    return this.http.get<Rol>(`${ this._url}/roles/${ id }`);
+  getRolPorId(id: string): Observable<Rol> {
+    const headers = new HttpHeaders()
+      .set("Accept", "application/json")
+      .set("Authorization", `Bearer ${this._token || ""}`);
+    return this.http.get<Rol>(`${this._url}/roles/${id}`, { headers });
   }
-  agregarRol( rol: Rol ): Observable<Rol> {
-    return this.http.post<Rol>(`${ this._url }/roles`, rol );
+  agregarRol(rol: Rol): Observable<Rol> {
+    const headers = new HttpHeaders()
+      .set("Accept", "application/json")
+      .set("Authorization", `Bearer ${this._token || ""}`);
+    return this.http.post<Rol>(`${this._url}/roles`, rol, { headers });
   }
 
-  actualizarRol( rol: Rol ): Observable<Rol> {
-    return this.http.put<Rol>(`${ this._url }/roles/${ rol.id }`, rol );
+  actualizarRol(rol: Rol): Observable<Rol> {
+    const headers = new HttpHeaders()
+      .set("Accept", "application/json")
+      .set("Authorization", `Bearer ${this._token || ""}`);
+    return this.http.put<Rol>(`${this._url}/roles/${rol.id}`, rol, { headers });
   }
-  borrarRol( id: number ): Observable<any> {
-    return this.http.delete<any>(`${ this._url }/roles/${ id }`);
+  borrarRol(id: number): Observable<any> {
+    const headers = new HttpHeaders()
+      .set("Accept", "application/json")
+      .set("Authorization", `Bearer ${this._token || ""}`);
+    return this.http.delete<any>(`${this._url}/roles/${id}`, { headers });
   }
-
 }
