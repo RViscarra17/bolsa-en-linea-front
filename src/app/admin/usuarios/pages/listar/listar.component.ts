@@ -12,7 +12,6 @@ import { UsuariosService } from "../../services/usuarios.service";
   styleUrls: ["./listar.component.css"],
 })
 export class ListarComponent implements OnInit {
-
   usuarios: Usuario[] = [];
   constructor(
     private usuariosService: UsuariosService,
@@ -26,9 +25,8 @@ export class ListarComponent implements OnInit {
       .subscribe((usuarios) => (this.usuarios = usuarios));
   }
   borrarUsuario(user: Usuario, event: any) {
-
     console.log(event.parentNode.parentNode.parentNode);
-    
+
     Swal.fire({
       title: "¿Está seguro de eliminar?",
       text: "No podrá recuperar el registro",
@@ -41,14 +39,14 @@ export class ListarComponent implements OnInit {
       if (result.isConfirmed) {
         this.usuariosService.borrarUsuario(user.id!).subscribe(() => {
           this.usuariosService
-          .getUsuarios()
-          .subscribe((usuarios) => (this.usuarios = usuarios));
+            .getUsuarios()
+            .subscribe((usuarios) => (this.usuarios = usuarios));
         });
         Swal.fire(
           "Registro eliminado",
           "SU registro se ha eliminado correctamente",
           "success"
-          );
+        );
       }
     });
   }

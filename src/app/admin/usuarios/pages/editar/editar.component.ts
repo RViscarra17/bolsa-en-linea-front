@@ -56,6 +56,10 @@ export class EditarComponent implements OnInit {
       .actualizarUsuario(this.miFormulario.value)
       .subscribe(() => {
         this.router.navigate(['admin/usuarios']);
+        this.activatedRoute.params
+        .pipe(switchMap(({ id }) => this.usuariosService.getUsuarioPorId(id)))
+        .subscribe((usuario) => this.miFormulario.reset(usuario));
+
       });
     // console.log(this.usuario)
     // this.miFormulario.reset();
