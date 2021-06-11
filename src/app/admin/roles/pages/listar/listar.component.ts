@@ -12,7 +12,10 @@ import { RolesService } from '../../services/roles.service';
 export class ListarComponent implements OnInit {
   roles: Rol[] = [];
 
-  constructor(private rolesService: RolesService, private router: Router) {}
+  constructor(
+    private rolesService: RolesService,
+    private router: Router
+    ) {}
 
   ngOnInit(): void {
     this.rolesService.getRoles()
