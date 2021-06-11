@@ -40,7 +40,8 @@ export class ListarComponent implements OnInit {
       if (result.isConfirmed) {
         this.usuariosService.borrarUsuario( user.id!)
         .subscribe(() => {
-          this.router.navigate(['admin/usuarios']);
+          this.usuariosService.getUsuarios()
+          .subscribe(usuarios => this.usuarios = usuarios);
         });
 
     // .subscribe(id =>console.log(id))
@@ -51,7 +52,6 @@ export class ListarComponent implements OnInit {
           'success'
 
         )
-        this.router.navigate(['admin/usuarios'])
 
       }
 

@@ -1,24 +1,26 @@
-<div class="row">
-  <h2 class="text-center">Administrar Usuarios</h2>
+<div class="row ">
+  <h2 class="text-center">Administrar Roles</h2>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button
+      class="btn btn-outline-dark"
+      type="button"
+      [routerLink]="['/admin/roles/agregar' ]"
+    ><i class="	fas fa-plus"></i> <span class="p-1"></span>Nuevo Rol</button>
+  </div>
   <div class="table-responsive">
     <table class="table text-center caption-top">
-      <caption>Lista de Usuarios</caption>
+      <caption>Lista de Roles</caption>
       <thead class="table-dark">
         <tr>
-          <th scope="col">Nombres</th>
-          <th scope="col">Apellidos</th>
-          <th scope="col">Correo</th>
-          <th scope="col">Rol</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Descripción</th>
           <th scope="col">Opciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of usuarios">
-          <td>{{user.nombres}}</td>
-          <td>{{user.apellidos}}</td>
-          <td>{{user.correo}}</td>
-          <td *ngIf="user.es_admin == 1; else elseBlock">Admin</td>
-          <ng-template #elseBlock>Otro</ng-template>
+        <tr *ngFor="let rol of roles">
+          <td>{{rol.display_name}}</td>
+          <td>{{rol.descripcion}}</td>
           <td>
             <a
               class="btn btn-outline-dark"
@@ -26,8 +28,8 @@
               aria-pressed="true"
               data-toggle="tooltip"
               data-placement="bottom"
-              title="Editar usuario"
-              [routerLink]="['/admin/usuarios/editar', user.id ]"
+              title="Editar rol"
+              [routerLink]="['/admin/roles/editar', rol.id ]"
             ><i class="fas fa-edit"></i>
             </a>
             <span class="p-1"></span>
@@ -37,8 +39,8 @@
               aria-pressed="true"
               data-toggle="tooltip"
               data-placement="bottom"
-              title="Eliminar usuario"
-              (click)="borrarUsuario(user)"
+              title="Eliminar rol"
+              (click)="borrarRol(rol)"
             ><i class="	fas fa-trash"></i>
             </button>
           </td>
