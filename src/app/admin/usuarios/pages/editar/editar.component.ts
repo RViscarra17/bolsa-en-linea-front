@@ -21,7 +21,7 @@ export class EditarComponent implements OnInit {
     es_admin: [, Validators.required],
   });
 
-  usuario: Usuario = this.miFormulario.value;
+  // usuario: Usuario = this.miFormulario.value;
   // usuario: Usuario = this.miFormulario.value
   // {
   //   nombres:'',
@@ -38,10 +38,6 @@ export class EditarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
-    if( !this.router.url.includes('editar') ) {
-      return;
-    }
     this.activatedRoute.params
       .pipe(switchMap(({ id }) => this.usuariosService.getUsuarioPorId(id)))
       .subscribe((usuario) => this.miFormulario.reset(usuario));
@@ -56,24 +52,21 @@ export class EditarComponent implements OnInit {
     // this.auSer.register(data).subscribe((_) => {
     //   this.router.navigate(["./login"]);
     // });
-    if( this.miFormulario.value.nombres.trim().length === 0  ) {
-      return;
-    }
-
-
+    this.usuariosService
+      .actualizarUsuario(this.miFormulario.value)
+      .subscribe(() => {
+        this.router.navigate(['admin/usuarios']);
+      });
     // console.log(this.usuario)
     // this.miFormulario.reset();
     Swal.fire({
-      title: "Registro editado!",
+      title: 'Registro editado!',
       icon: 'success',
-      confirmButtonText: 'Ok'
-    })
-    this.router.navigate(['admin/usuarios'])
-
+      confirmButtonText: 'Ok',
+    });
   }
+
   limpiar() {
     this.miFormulario.reset();
   }
-
-
 }

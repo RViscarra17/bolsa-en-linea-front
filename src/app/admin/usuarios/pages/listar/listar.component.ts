@@ -39,7 +39,12 @@ export class ListarComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.usuariosService.borrarUsuario( user.id!)
-    .subscribe(id =>console.log(id))
+        .subscribe(() => {
+          this.router.navigate(['admin/usuarios']);
+        });
+
+    // .subscribe(id =>console.log(id))
+
         Swal.fire(
           'Registro eliminado',
           'SU registro se ha eliminado correctamente',

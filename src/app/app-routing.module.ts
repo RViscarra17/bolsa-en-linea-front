@@ -10,9 +10,9 @@ const routes: Routes = [
     path: "",
     component: HomeComponent,
     // pathMatch: 'full',
-  /*   canActivate: [AuthTokenGuard],
+    canActivate: [AuthTokenGuard],
     canLoad: [AuthTokenGuard],
-    canActivateChild: [AuthTokenGuard], */
+    canActivateChild: [AuthTokenGuard],
     children: [
       {
         path: "admin",
@@ -34,8 +34,8 @@ const routes: Routes = [
   {
     path: "auth",
     loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
-    // canActivate: [HomeGuard],
-    // canLoad: [HomeGuard],
+    canActivate: [HomeGuard],
+    canLoad: [HomeGuard],
   },
   {
     path: "**",
