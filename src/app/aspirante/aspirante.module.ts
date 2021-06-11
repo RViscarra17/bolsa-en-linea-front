@@ -4,8 +4,12 @@ import { CommonModule } from '@angular/common';
 import { AspiranteRoutingModule } from './aspirante-routing.module';
 
 
+
 @NgModule({
-  declarations: [],
+  declarations: [
+
+
+  ],
   imports: [
     CommonModule,
     AspiranteRoutingModule

@@ -2,15 +2,15 @@
   <h2 class="text-center">Administrar Datos</h2>
   <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
     <button
-    class="btn btn-outline-danger"
+    class="btn btn-outline-dark"
     type="button"
-    [routerLink]="['/admin/roles/agregar' ]"
-  ><i class="		fa fa-minus"></i> <span class="p-1"></span>Eliminar</button>
+    [routerLink]="['/user/datos/agregar' ]"
+  ><i class="		fa fa-plus"></i> <span class="p-1"></span>Agregar</button>
     <button
       class="btn btn-outline-dark"
       type="button"
-      [routerLink]="['/admin/roles/agregar' ]"
-    ><i class="	fas fa-plus"></i> <span class="p-1"></span>Actualizar</button>
+      [routerLink]="['/user/datos/editar',datos.id ]"
+    ><i class="	fas fa-edit"></i> <span class="p-1"></span>Actualizar</button>
   </div>
   <div class="table-responsive mt-2">
     <table class="table  caption-top">
@@ -31,27 +31,31 @@
         </tr>
         <tr>
           <th scope="row">NIT:</th>
-          <td>Nombre</td>
+          <td>{{datos.nit}}</td>
         </tr>
         <tr>
           <th scope="row">Fecha de nacimiento:</th>
-          <td>Nombre</td>
+          <td>{{datos.fecha_nacimiento}}</td>
         </tr>
         <tr>
           <th scope="row">Resumen:</th>
-          <td>Nombre</td>
+          <td>{{datos.nit}}</td>
         </tr>
         <tr>
           <th scope="row">Disponibilidad de viaje:</th>
-          <td>Nombre</td>
+          <td><span *ngIf="datos.disponibilidad_viaje == true; else elseBlock">Si</span></td>
+          <ng-template #elseBlock>No</ng-template>
         </tr>
         <tr>
           <th scope="row">Posee vehículo:</th>
-          <td>Nombre</td>
+          <td><span *ngIf="datos.posee_vehiculo == true; else elseBlock">Si</span></td>
+          <ng-template #elseBlock>No</ng-template>
+
         </tr>
         <tr>
           <th scope="row">Puede cambiar de residencia:</th>
-          <td>Nombre</td>
+          <td><span *ngIf="datos.puede_cambiar_res == true; else elseBlock">Si</span></td>
+          <ng-template #elseBlock>No</ng-template>
         </tr>
 
       </tbody>

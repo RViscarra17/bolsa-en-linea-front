@@ -1,1 +1,82 @@
-<p>agregar works!</p>
+<div class="row ">
+  <h2 class="text-center">
+    {{ ( formularioDatos.value.id )? 'Editar' : 'Registrar' }}
+    Dato</h2>
+  <div class=" mt-4 offset-md-1  offset-lg-1 col-md-10 col-lg-10 col-sm-12  justify-content-center">
+    <div class="card">
+      <div class="card-header ">
+        <h5 class="mt-2 card-title">
+         Datos</h5>
+        <small class="text-danger">* Obligatorio</small>
+      </div>
+      <div class="form-dato">
+        <form
+          autocomplete="off"
+          [formGroup]="formularioDatos"
+          (ngSubmit)="guardar()"
+        >
+          <div class="card-body ">
+
+            <div class="form-floating">
+              <!-- <div class="row mt-4"> -->
+              <div class="col-sm-12  mt-1  ">
+                <label for="floatingInput">Nombre: <span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  formControlName="name"
+                  class="form-control mt-2 "
+                  placeholder="Nombre del dato"
+                >
+              </div>
+            </div>
+
+            <div class="form-floating">
+              <!-- <div class="row mt-4"> -->
+              <div class="col-sm-12  mt-2  ">
+                <label for="floatingInput">Display name: <span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  formControlName="display_name"
+                  class="form-control mt-2 "
+                  placeholder="Nombre del dato"
+                >
+              </div>
+            </div>
+
+            <div class="form-floating">
+              <!-- <div class="row mt-4"> -->
+              <div class="col-sm-12  mt-2  ">
+                <label for="floatingInput">Decripción: <span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  formControlName="descripcion"
+                  class="form-control mt-2 "
+                  placeholder="Descripción del dato"
+                >
+              </div>
+            </div>
+
+          </div>
+
+          <div class="card-footer ">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button
+                (click)="limpiar()"
+                type="button"
+                class="btn btn-outline-danger"
+              >
+                Limpiar</button>
+              <button
+                type="submit"
+                class="btn btn-outline-dark"
+              >Guardar</button>
+
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+
+    </div>
+  </div>

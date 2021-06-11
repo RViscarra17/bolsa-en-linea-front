@@ -3,6 +3,10 @@ import { RouterModule, Routes } from "@angular/router";
 
 const routes: Routes = [
   {
+    path: "curriculum"
+
+  },
+  {
     path: "academico",
     loadChildren: () =>
       import("./academico/academico.module").then((m) => m.AcademicoModule),
