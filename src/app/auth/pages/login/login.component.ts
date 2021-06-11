@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(data).subscribe(
       (_) => {
-        this.router.navigate(["/admin/usuarios/prueba"]);
+        this.router.navigate(["/"]);
       },
       (error) => {
         let doto: string = "";

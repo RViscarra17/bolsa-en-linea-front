@@ -10,6 +10,7 @@ import { SidebarComponent } from "./shared/sidebar/sidebar.component";
 import { HomeComponent } from "./shared/home/home.component";
 import { SpinnerComponent } from "./shared/spinner/spinner.component";
 import { NavegacionComponent } from './shared/navegacion/navegacion.component';
+import { BienvenidaComponent } from './shared/bienvenida/bienvenida.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NavegacionComponent } from './shared/navegacion/navegacion.component';
     SidebarComponent,
     HomeComponent,
     SpinnerComponent,
-    NavegacionComponent
+    NavegacionComponent,
+    BienvenidaComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { AppComponent } from "./app.component";
 import { AuthTokenGuard } from "./auth/guards/auth-token.guard";
 import { HomeGuard } from "./auth/guards/home.guard";
+import { BienvenidaComponent } from "./shared/bienvenida/bienvenida.component";
 import { HomeComponent } from "./shared/home/home.component";
 
 const routes: Routes = [
@@ -14,6 +15,10 @@ const routes: Routes = [
     canLoad: [AuthTokenGuard],
     canActivateChild: [AuthTokenGuard],
     children: [
+      {
+        path: "",
+        component: BienvenidaComponent,
+      },
       {
         path: "admin",
         loadChildren: () =>

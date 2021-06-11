@@ -23,7 +23,7 @@ export class HomeGuard implements CanActivate, CanLoad {
     return this.auS.auth().pipe(
       tap((valido) => {
         if (!valido) {
-          this.router.navigateByUrl("/admin/usuarios/prueba");
+          this.router.navigateByUrl("/");
         }
       })
     );
@@ -33,7 +33,7 @@ export class HomeGuard implements CanActivate, CanLoad {
     return this.auS.user().pipe(
       tap((valido) => {
         if (!valido) {
-          this.router.navigateByUrl("/admin/usuarios/prueba");
+          this.router.navigateByUrl("/");
         }
       })
     );
