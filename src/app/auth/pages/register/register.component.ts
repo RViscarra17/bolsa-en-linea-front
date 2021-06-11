@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "../../services/auth.service";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-register",
@@ -11,12 +11,11 @@ import Swal from 'sweetalert2';
 })
 export class RegisterComponent implements OnInit {
   miFormulario: FormGroup = this.fb.group({
-    first_name: ["", Validators.required],
-    last_name: ["", Validators.required],
-    email: ["", [Validators.required, Validators.email]],
+    nombres: ["", Validators.required],
+    apellidos: ["", Validators.required],
+    correo: ["", [Validators.required, Validators.email]],
     password: ["", [Validators.required, Validators.minLength(8)]],
-    password_confirm: ["", [Validators.required, Validators.minLength(8)]],
-    role_id: ["", Validators.required],
+    password_confirmation: ["", [Validators.required, Validators.minLength(8)]],
   });
 
   constructor(
@@ -28,18 +27,35 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   guardar() {
-    // const data = { ...this.miFormulario.value };
-    // this.auSer.register(data).subscribe((_) => {
-    //   this.router.navigate(["./login"]);
-    // });
+    const data = { ...this.miFormulario.value };
+    this.auSer.register(data).subscribe(
+      (_) => {
+        Swal.fire({
+          title: "Registrado!",
+          text: "Usuario registrado con exito",
+          icon: "success",
+          confirmButtonText: "Ok",
+        }).then((_) => {
+          this.miFormulario.reset();
+          this.router.navigate(["./login"])
+        })
+      },
+      (error) => {
+        // console.log(error.error);
+        let doto: string = "";
+        const errArr = Object.values(error.error.errors);
 
-    Swal.fire({
-      title: 'Error!',
-      text: 'Do you want to continue',
-      icon: 'error',
-      confirmButtonText: 'Cool'
-    })
+        errArr.forEach((value) => {
+          doto += `<span class=\"text-danger\">${value}<br/></span>`;
+        });
+        Swal.fire({
+          title: "Error",
+          html: `${doto}`,
+          icon: "error",
+          cancelButtonText: "Ok",
+        });
+      }
+    );
 
-    // this.miFormulario.reset();
   }
 }

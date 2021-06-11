@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
+import Swal from "sweetalert2";
 
 import { AuthService } from "./../../services/auth.service";
 
@@ -15,28 +16,35 @@ export class LoginComponent implements OnInit {
     password: ["password", Validators.required],
   });
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
   guardar() {
     const data = { ...this.miFormulario.value };
-    
 
     this.authService.login(data).subscribe(
-      ( resp ) => {
-        // console.log(resp);
-        console.log(this.authService.token);
-        
-        
-        this.authService.user().subscribe((resp) => {
-          console.log(this.authService.usuario);
-          this.router.navigate(['/admin/usuarios/prueba']);
-        });
+      (_) => {
+        this.router.navigate(["/admin/usuarios/prueba"]);
       },
-      (error) => console.log(error)
-    );
+      (error) => {
+        let doto: string = "";
+        const errArr = Object.values(error.error.errors);
 
-    // this.miFormulario.reset();
+        errArr.forEach((value) => {
+          doto += `<span class=\"text-danger\">${value}<br/></span>`;
+        });
+        Swal.fire({
+          title: "Error",
+          html: `${doto}`,
+          icon: "error",
+          cancelButtonText: "Ok",
+        });
+      }
+    );
   }
 }
