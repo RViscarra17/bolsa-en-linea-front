@@ -8,36 +8,39 @@
           <th scope="col">Nombres</th>
           <th scope="col">Apellidos</th>
           <th scope="col">Correo</th>
+          <th scope="col">Rol</th>
           <th scope="col">Opciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark Hola Rafa Pasame BAD</td>
-          <td>Otto Hola Rafa Pasame BAD</td>
+        <tr *ngFor="let user of usuarios">
+          <td>{{user.nombres}}</td>
+          <td>{{user.apellidos}}</td>
+          <td>{{user.correo}}</td>
+          <td *ngIf="user.es_admin == 1; else elseBlock">Admin</td>
+          <ng-template #elseBlock>Otro</ng-template>
           <td>
-            <a class="btn btn-outline-dark" role="button" aria-pressed="true" data-toggle="tooltip"
-              data-placement="bottom" title="Editar usuario"><i class="fas fa-edit"></i>
+            <a
+              class="btn btn-outline-dark"
+              role="button"
+              aria-pressed="true"
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Editar usuario"
+              [routerLink]="['/admin/usuarios/editar', user.id ]"
+            ><i class="fas fa-edit"></i>
             </a>
-            <span class="p-1"></span>
-            <a class="btn btn-outline-dark " role="button" aria-pressed="true" data-toggle="tooltip"
-              data-placement="bottom" title="Eliminar usuario"><i class="	fas fa-trash"></i>
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>
-            <a class="btn btn-outline-dark" role="button" aria-pressed="true" data-toggle="tooltip"
-              data-placement="bottom" title="Editar usuario"><i class="fas fa-edit"></i></a>
-            <span class="p-1"></span>
-
-            <a class="btn btn-outline-dark" role="button" aria-pressed="true" data-toggle="tooltip"
-              data-placement="bottom" title="Eliminar usuario"><i class="	fas fa-trash"></i></a>
-
+            <!-- <span class="p-1"></span> -->
+            <button
+              class="btn btn-outline-dark "
+              role="button"
+              aria-pressed="true"
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Eliminar usuario"
+              (click)="borrarUsuario(user)"
+            ><i class="	fas fa-trash"></i>
+            </button>
           </td>
         </tr>
 

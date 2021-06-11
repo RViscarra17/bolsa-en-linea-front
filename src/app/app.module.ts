@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { HomeComponent } from './shared/home/home.component';
+import { NavegacionComponent } from './shared/navegacion/navegacion.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     SidebarComponent,
-    HomeComponent
+    HomeComponent,
+    NavegacionComponent
   ],
   imports: [
     BrowserModule,

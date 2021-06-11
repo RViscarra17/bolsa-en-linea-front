@@ -1,0 +1,97 @@
+<div class="row ">
+  <h2 class="text-center">Editar Usuario</h2>
+  <div class=" mt-4 offset-md-1  offset-lg-1 col-md-10 col-lg-10 col-sm-12  justify-content-center">
+    <div class="card">
+      <div class="card-header ">
+        <h5 class="mt-2 card-title">Datos del Usuario</h5>
+        <small class="text-danger">* Obligatorio</small>
+      </div>
+      <div class="form-usuario">
+        <form
+          autocomplete="off"
+          [formGroup]="miFormulario"
+          (ngSubmit)="guardar()"
+        >
+          <div class="card-body ">
+
+            <div class="form-floating">
+              <!-- <div class="row mt-4"> -->
+              <div class="col-sm-12  mt-1  ">
+                <label for="floatingInput">Nombres: <span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  formControlName="nombres"
+                  class="form-control"
+                  placeholder="Nombre del usuario"
+                >
+              </div>
+            </div>
+
+            <div class="form-floating">
+              <div class="col-sm-12  mt-2 ">
+                <label for="floatingInput">Apellidos: <span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  formControlName="apellidos"
+                  class="form-control"
+                  placeholder="Apellido del usuario"
+                >
+              </div>
+              <!-- </div> -->
+            </div>
+
+            <div class="form-floating">
+              <!-- <div class="row mt-4"> -->
+              <div class="col-sm-12  mt-2">
+                <label for="floatingInput">Correo: <span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  formControlName="correo"
+                  class="form-control"
+                  id="correo"
+                  placeholder="Correo del usuario"
+                >
+              </div>
+            </div>
+
+            <div class="form-floating">
+              <div class="col-sm-12 mt-2">
+                <label for="floatingInput">Rol: <span class="text-danger">*</span></label>
+                <select
+                  formControlName="es_admin"
+                  class="form-select"
+                  id="inputGroupSelect01"
+                >
+                  <option selected>Seleccione una opción</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+              <!-- </div> -->
+            </div>
+
+          </div>
+
+          <div class="card-footer ">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button
+                (click)="limpiar()"
+                type="button"
+                class="btn btn-dark"
+              >
+                Limpiar</button>
+              <button
+                type="submit"
+                class="btn btn-outline-dark"
+              >Guardar</button>
+
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+
+    </div>
+  </div>
