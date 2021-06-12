@@ -1,2 +1,21 @@
-<p>bienvenida works!</p>
-<pre>{{ usuario | json}}</pre>
+<div class="row">
+  <h2 class="text-center">Bienvenido a SysJob</h2>
+
+  <div
+    class="
+      mt-4
+      offset-md-1 offset-lg-1
+      col-md-10 col-lg-10 col-sm-12
+      justify-content-center
+    "
+  >
+    <div class="card">
+      <div class="car-header">
+        <h5 class="mt-2 card-title text-center text-color-primary">
+          {{ usuario.nombre }}
+        </h5>
+        <h6 class="mt-2 card-title text-center">{{ rol }}</h6>
+      </div>
+    </div>
+  </div>
+</div>

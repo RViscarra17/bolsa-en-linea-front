@@ -32,6 +32,7 @@ export class AuthTokenGuard implements CanActivate, CanActivateChild, CanLoad {
   canActivateChild(): Observable<boolean> | boolean {
     return this.auS.user().pipe(
       tap((valido) => {
+        this.auS.obtenerRol().subscribe();
         if (!valido) {
           this.router.navigateByUrl("/auth/login");
         }

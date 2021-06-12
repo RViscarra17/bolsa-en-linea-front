@@ -8,7 +8,7 @@ import { Rol } from "../interfaces/rol";
   providedIn: "root",
 })
 export class RolesService {
-  private _url = environment.apiUrl;
+  private _url = `${environment.apiUrl}/admin`;
   private _token = localStorage.getItem("token") || "";
 
   constructor(private http: HttpClient) {}

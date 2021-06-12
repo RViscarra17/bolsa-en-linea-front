@@ -12,6 +12,10 @@ export class BienvenidaComponent implements OnInit {
     return this.authSvc.usuario;
   }
 
+  get rol() {
+    return this.authSvc.rol;
+  }
+
   constructor(
     private authSvc: AuthService
   ) { }

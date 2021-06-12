@@ -5,7 +5,7 @@ import { Observable, of } from "rxjs";
 import { catchError, map, tap } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 
-import { Login, User, UserR, Usuario, Toke } from "../interface/login";
+import { Login, User, UserR, Usuario, Toke, Data, Usu } from "../interface/login";
 
 @Injectable({
   providedIn: "root",
@@ -13,7 +13,8 @@ import { Login, User, UserR, Usuario, Toke } from "../interface/login";
 export class AuthService {
   private _url = environment.apiUrl;
   private _token: string = localStorage.getItem('token') || '';
-  private _user: Usuario = {};
+  private _user!: Usu;
+  private _rol!: string;
 
   get usuario() {
     return { ...this._user };
@@ -21,6 +22,10 @@ export class AuthService {
 
   public get token(): string {
     return this._token;
+  }
+
+  get rol() {
+    return this._rol;
   }
 
   constructor(private http: HttpClient) {}
@@ -31,7 +36,8 @@ export class AuthService {
         const { access_token } = resp;
         this._token = access_token;
         localStorage.setItem("token", this._token);
-      })
+      }),
+      // catchError(error => of({'access_token': ''}))
     );
   }
 
@@ -41,14 +47,12 @@ export class AuthService {
       .set("Authorization", `Bearer ${this._token || ""}`);
 
     return this.http
-      .get<Usuario>(`${this._url}/user`, {
+      .get<Data>(`${this._url}/utilidades/usuario`, {
         headers,
       })
       .pipe(
-        tap((usuario) => {
-          // console.log(usuario);
-          
-          this._user = usuario;
+        tap(({ data }) => {
+          this._user = data;
         }),
         map(( _ ) => {
           return true;
@@ -63,19 +67,32 @@ export class AuthService {
       .set("Authorization", `Bearer ${this._token || ""}`);
 
     return this.http
-      .get<Usuario>(`${this._url}/user`, {
+      .get<Data>(`${this._url}/utilidades/usuario`, {
         headers,
       })
       .pipe(
-        // tap((usuario) => {
-        //   // console.log(usuario);
-          
-        //   this._user = usuario;
-        // }),
         map(( _ ) => {
           return false;
         }),
         catchError((error) => of(true))
+      );
+  }
+
+  obtenerRol() {
+    const headers = new HttpHeaders()
+      .set("Accept", "application/json")
+      .set("Authorization", `Bearer ${this._token || ""}`);
+
+      return this.http
+      .get<string[]>(`${this._url}/utilidades/roles`, {
+        headers,
+      })
+      .pipe(
+        tap(( role) => {
+          // console.log(role);
+          
+          this._rol = role.toString();
+        })
       );
   }
 

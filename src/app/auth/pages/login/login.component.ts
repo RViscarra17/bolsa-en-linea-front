@@ -13,7 +13,7 @@ import { AuthService } from "./../../services/auth.service";
 export class LoginComponent implements OnInit {
   miFormulario: FormGroup = this.fb.group({
     correo: ["example@example.com", [Validators.required, Validators.email]],
-    password: ["password", Validators.required],
+    password: ["admin123", Validators.required],
   });
 
   constructor(
@@ -30,10 +30,13 @@ export class LoginComponent implements OnInit {
     this.authService.login(data).subscribe(
       (_) => {
         this.router.navigate(["/"]);
+
+        // this.authService.user().subscribe();
+
       },
       (error) => {
         let doto: string = "";
-        const errArr = Object.values(error.error.errors);
+        const errArr = Object.values(error?.error?.errors);
 
         errArr.forEach((value) => {
           doto += `<span class=\"text-danger\">${value}<br/></span>`;

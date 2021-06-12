@@ -62,10 +62,8 @@
                   class="form-select"
                   id="inputGroupSelect01"
                 >
-                  <option selected>Seleccione una opción</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <option selected="true" value="">Seleccione una opción</option>
+                  <option *ngFor="let rol of roles" [value]="rol.id">{{ rol.display_name }}</option>
                 </select>
               </div>
               <!-- </div> -->

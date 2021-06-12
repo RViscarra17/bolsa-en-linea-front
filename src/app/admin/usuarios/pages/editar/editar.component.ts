@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { Rol } from 'src/app/admin/roles/interfaces/rol';
+import { RolesService } from 'src/app/admin/roles/services/roles.service';
 import Swal from 'sweetalert2';
 import { Usuario } from '../../interfaces/usuario';
 
@@ -18,8 +20,10 @@ export class EditarComponent implements OnInit {
     nombres: ['', Validators.required],
     apellidos: ['', Validators.required],
     correo: ['', [Validators.required, Validators.email]],
-    es_admin: [, Validators.required],
+    es_admin: [ '', Validators.required],
   });
+
+  roles: Rol[] = []; 
 
   // usuario: Usuario = this.miFormulario.value;
   // usuario: Usuario = this.miFormulario.value
@@ -33,6 +37,7 @@ export class EditarComponent implements OnInit {
   constructor(
     private usuariosService: UsuariosService,
     private activatedRoute: ActivatedRoute,
+    private rolService: RolesService,
     private router: Router,
     private fb: FormBuilder
   ) {}
@@ -41,6 +46,10 @@ export class EditarComponent implements OnInit {
     this.activatedRoute.params
       .pipe(switchMap(({ id }) => this.usuariosService.getUsuarioPorId(id)))
       .subscribe((usuario) => this.miFormulario.reset(usuario));
+
+    this.rolService.getRoles().subscribe(
+      roles => this.roles = roles
+    );
 
     // .subscribe(usuario => console.log(usuario))
 

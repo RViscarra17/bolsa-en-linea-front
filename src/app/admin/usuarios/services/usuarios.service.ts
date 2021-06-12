@@ -8,7 +8,7 @@ import { Usuario } from "../interfaces/usuario";
   providedIn: "root",
 })
 export class UsuariosService {
-  private _url = environment.apiUrl;
+  private _url = `${environment.apiUrl}/admin`;
   private _token = localStorage.getItem("token") || "";
 
   constructor(private http: HttpClient) {}

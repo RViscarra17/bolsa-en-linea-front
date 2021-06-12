@@ -42,3 +42,13 @@ export interface Usuario {
 export interface Toke {
   access_token: string;
 }
+
+export interface Data {
+  data: Usu;
+}
+
+export interface Usu {
+  id: number;
+  nombre: string;
+  tipo:   string;
+}
