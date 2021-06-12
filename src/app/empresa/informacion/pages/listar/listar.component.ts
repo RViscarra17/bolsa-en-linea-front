@@ -1,23 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { Rol } from '../../interfaces/rol';
-import { RolesService } from '../../services/roles.service';
+import { Empresa } from '../../interfaces/empresa';
+import { EmpresaService } from '../../services/empresa.service';
 
 @Component({
   selector: 'app-listar',
   templateUrl: './listar.component.html',
-  styleUrls: ['./listar.component.css'],
+  styleUrls: ['./listar.component.css']
 })
 export class ListarComponent implements OnInit {
-  roles: Rol[] = [];
+  empresas: Empresa[] = [];
 
-  constructor(private rolesService: RolesService, private router: Router) {}
+
+  constructor(
+    private empresasService: EmpresaService,
+    private router: Router,
+
+  ) { }
 
   ngOnInit(): void {
-    this.rolesService.getRoles().subscribe((roles) => (this.roles = roles));
+    this.empresasService.getEmpresas()
+    .subscribe(empresas => this.empresas = empresas);
   }
-  borrarRol(roles: Rol) {
+
+  borrarEmpresa(empresas: Empresa) {
     Swal.fire({
       title: '¿Está seguro de eliminar?',
       text: 'No podrá recuperar el registro',
@@ -28,10 +35,10 @@ export class ListarComponent implements OnInit {
       confirmButtonText: 'Si, eliminar',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.rolesService.borrarRol(roles.id!).subscribe(() => {
-          this.rolesService
-            .getRoles()
-            .subscribe((roles) => (this.roles = roles));
+        this.empresasService.borrarEmpresa(empresas.id!).subscribe(() => {
+          this.empresasService
+            .getEmpresas()
+            .subscribe((empresas) => (this.empresas = empresas));
         });
 
         // .subscribe(id =>console.log(id))
@@ -44,4 +51,5 @@ export class ListarComponent implements OnInit {
       }
     });
   }
+
 }

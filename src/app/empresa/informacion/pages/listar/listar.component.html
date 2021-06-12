@@ -1,0 +1,55 @@
+<div class="row ">
+  <h2 class="text-center">Administrar Empresas</h2>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button
+      class="btn btn-outline-dark"
+      type="button"
+      [routerLink]="['/admin/empresas/agregar' ]"
+    ><i class="	fas fa-plus"></i> <span class="p-1"></span>Nuevo Empresa</button>
+  </div>
+  <div class="table-responsive">
+    <table class="table text-center caption-top">
+      <caption>Lista de Empresas</caption>
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Razón social</th>
+          <th scope="col">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let empresa of empresas">
+          <td>{{empresa.nombre_emp}}</td>
+          <td>{{empresa.razon_social}}</td>
+          <td>
+            <a
+              class="btn btn-outline-dark"
+              role="button"
+              aria-pressed="true"
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Editar empresa"
+              [routerLink]="['/admin/empresas/editar', empresa.id ]"
+            ><i class="fas fa-edit"></i>
+            </a>
+            <span class="p-1"></span>
+            <button
+              class="btn btn-outline-danger "
+              role="button"
+              aria-pressed="true"
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Eliminar empresa"
+              (click)="borrarEmpresa(empresa)"
+            ><i class="	fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+
+</div>
+
