@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "../../services/auth.service";
 import Swal from "sweetalert2";
+import { RolesService } from "src/app/admin/roles/services/roles.service";
+import { Rol } from "src/app/admin/roles/interfaces/rol";
 
 @Component({
   selector: "app-register",
@@ -16,15 +18,23 @@ export class RegisterComponent implements OnInit {
     correo: ["", [Validators.required, Validators.email]],
     password: ["", [Validators.required, Validators.minLength(8)]],
     password_confirmation: ["", [Validators.required, Validators.minLength(8)]],
+    id_tipo_usuario: ['', Validators.required]
   });
+
+  // roles: Rol[] = [];
 
   constructor(
     private fb: FormBuilder,
     private auSer: AuthService,
+    private rolSer: RolesService,
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.rolSer.getRoles().subscribe( roles => {
+    //   this.roles = roles;
+    // })
+  }
 
   guardar() {
     const data = { ...this.miFormulario.value };
