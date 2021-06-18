@@ -1,66 +1,21 @@
-<div class="row ">
+<div class="row">
   <h2 class="text-center">Administrar Datos</h2>
   <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
     <button
-    class="btn btn-outline-dark"
-    type="button"
-    [routerLink]="['/user/datos/agregar' ]"
-  ><i class="		fa fa-plus"></i> <span class="p-1"></span>Agregar</button>
+      class="btn btn-outline-dark"
+      type="button"
+      [routerLink]="['/user/datos/agregar']"
+    >
+      <i class="fa fa-plus"></i> <span class="p-1"></span>Agregar
+    </button>
     <button
       class="btn btn-outline-dark"
       type="button"
-      [routerLink]="['/user/datos/editar',datos.id ]"
-    ><i class="	fas fa-edit"></i> <span class="p-1"></span>Actualizar</button>
+      [routerLink]="['/user/datos/editar', datos.id]"
+    >
+      <i class="fas fa-edit"></i> <span class="p-1"></span>Actualizar
+    </button>
   </div>
-  <div class="table-responsive mt-2">
-    <table class="table  caption-top">
-      <thead class="table-dark">
-        <tr>
-          <th scope="col"><span class="p-1"></span></th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">Genero:</th>
-          <td>{{datos.genero}}</td>
-        </tr>
-        <tr>
-          <th scope="row">DUI:</th>
-          <td>{{datos.dui}}</td>
-        </tr>
-        <tr>
-          <th scope="row">NIT:</th>
-          <td>{{datos.nit}}</td>
-        </tr>
-        <tr>
-          <th scope="row">Fecha de nacimiento:</th>
-          <td>{{datos.fecha_nacimiento}}</td>
-        </tr>
-        <tr>
-          <th scope="row">Resumen:</th>
-          <td>{{datos.nit}}</td>
-        </tr>
-        <tr>
-          <th scope="row">Disponibilidad de viaje:</th>
-          <td><span *ngIf="datos.disponibilidad_viaje == true; else elseBlock">Si</span></td>
-          <ng-template #elseBlock>No</ng-template>
-        </tr>
-        <tr>
-          <th scope="row">Posee vehículo:</th>
-          <td><span *ngIf="datos.posee_vehiculo == true; else elseBlock">Si</span></td>
-          <ng-template #elseBlock>No</ng-template>
-
-        </tr>
-        <tr>
-          <th scope="row">Puede cambiar de residencia:</th>
-          <td><span *ngIf="datos.puede_cambiar_res == true; else elseBlock">Si</span></td>
-          <ng-template #elseBlock>No</ng-template>
-        </tr>
-
-      </tbody>
-    </table>
-  </div>
-
+  <app-tabla></app-tabla>
 
 </div>

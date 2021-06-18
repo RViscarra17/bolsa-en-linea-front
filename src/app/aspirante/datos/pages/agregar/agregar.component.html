@@ -1,4 +1,4 @@
-<div class="row ">
+  <div class="row ">
   <h2 class="text-center">
     {{ ( formularioDatos.value.id )? 'Editar' : 'Registrar' }}
     Dato</h2>
@@ -6,10 +6,10 @@
     <div class="card">
       <div class="card-header ">
         <h5 class="mt-2 card-title">
-         Datos</h5>
+          Datos</h5>
         <small class="text-danger">* Obligatorio</small>
       </div>
-      <div class="form-dato">
+      <!-- <div class="form-dato"> -->
         <form
           autocomplete="off"
           [formGroup]="formularioDatos"
@@ -17,43 +17,131 @@
         >
           <div class="card-body ">
 
-            <div class="form-floating">
-              <!-- <div class="row mt-4"> -->
-              <div class="col-sm-12  mt-1  ">
-                <label for="floatingInput">Nombre: <span class="text-danger">*</span></label>
-                <input
-                  type="text"
-                  formControlName="name"
-                  class="form-control mt-2 "
-                  placeholder="Nombre del dato"
-                >
+            <div class="row">
+
+              <div class="form-group  col-md-6 mt-1">
+                <!-- <div class="row mt-4"> -->
+                <!-- <div class=" col-md-6 mt-1  "> -->
+                  <label >DUI: <span class="text-danger">*</span></label>
+                  <input
+                    type="text"
+                    pattern="^[0-9]{8}[\-][0-9]$"
+                    tittle="Formato de DUI no válido"
+                    formControlName="dui"
+                    class="form-control mt-2 "
+                    placeholder="########-#"
+                  >
+                <!-- </div> -->
               </div>
+
+              <div class="form-group col-md-6  mt-1">
+                <!-- <div class="row mt-4"> -->
+                <!-- <div class="col-md-6  mt-1  "> -->
+                  <label >NIT: <span class="text-danger">*</span></label>
+                  <input
+                    type="text"
+                    pattern="^[0-9]{4}[\-][0-9]{6}[\-][0-9]{3}[\-][0-9]$"
+                    tittle="Formato de NIT no válido"
+                    formControlName="nit"
+                    class="form-control mt-2 "
+                    placeholder="####-######-###-#"
+                  >
+                <!-- </div> -->
+              </div>
+
+            </div>
+            <div class="row">
+
+              <div class="form-group  col-md-6 mt-2">
+                <!-- <div class="row mt-4"> -->
+                <!-- <div class=" col-md-6 mt-1  "> -->
+                  <label>Fecha de nacimiento: <span class="text-danger">*</span></label>
+                  <input
+                    type="text"
+                      formControlName="fecha_nacimiento"
+                    class="form-control mt-2 "
+                    placeholder="dd/mm/aaaa"
+                  >
+                <!-- </div> -->
+              </div>
+
+              <div class="form-group col-md-6  mt-2">
+                <!-- <div class="row mt-4"> -->
+                <!-- <div class="col-md-6  mt-1  "> -->
+                  <label>Genero: <span class="text-danger">*</span></label>
+                  <select class="form-select mt-2" data-live-search="true" formControlName="genero">
+                    <option value= "0" disabled selected>Seleccione una opción</option>
+                    <option value="F">Femenino</option>
+                    <option value="M">Masculino</option>
+                  </select>
+                <!-- </div> -->
+              </div>
+
             </div>
 
-            <div class="form-floating">
-              <!-- <div class="row mt-4"> -->
-              <div class="col-sm-12  mt-2  ">
-                <label for="floatingInput">Display name: <span class="text-danger">*</span></label>
-                <input
-                  type="text"
-                  formControlName="display_name"
-                  class="form-control mt-2 "
-                  placeholder="Nombre del dato"
-                >
+            <div class="row">
+
+              <div class="form-group  col-md-4 mt-2">
+                <!-- <div class="row mt-4"> -->
+                <!-- <div class=" col-md-6 mt-1  "> -->
+                  <label for="viajar" class="col-form-label">Disponibilidad de viajar: <span class="text-danger">*</span></label>
+						      <div class="form-group">
+				            <div class="form-check form-check-inline">
+				                <input class="form-check-input" type="radio" id="siViaja" formControlName="viajar" value="true">
+				                <label class="form-check-label" for="siViaja">Si</label>
+				            </div>
+
+                   <div class="form-check form-check-inline">
+				                <input class="form-check-input" type="radio" id="noViaja" formControlName="viajar" value="false" checked>
+				                <label class="form-check-label" for="noViaja">No</label>
+				           </div>
+                  </div>
+                <!-- </div> -->
               </div>
+
+              <div class="form-group col-md-4  mt-2">
+                <!-- <div class="row mt-4"> -->
+                <!-- <div class="col-md-6  mt-1  "> -->
+                  <label for="vehiculo" class="col-form-label">Posee vehículo: <span class="text-danger">*</span></label>
+						      <div class="form-group">
+				            <div class="form-check form-check-inline">
+				                <input class="form-check-input" type="radio" id="siVehiculo" formControlName="vehiculo" value="true">
+				                <label class="form-check-label" for="siVehiculo">Si</label>
+				            </div>
+
+                   <div class="form-check form-check-inline">
+				                <input class="form-check-input" type="radio" id="noVehiculo" formControlName="vehiculo" value="false" checked>
+				                <label class="form-check-label" for="noVehiculo">No</label>
+				           </div>
+                  </div>
+                <!-- </div> -->
+              </div>
+
+              <div class="form-group col-md-4  mt-2">
+                <!-- <div class="row mt-4"> -->
+                <!-- <div class="col-md-6  mt-1  "> -->
+                  <label for="residencia" class="col-form-label">Puede cambiar de residencia: <span class="text-danger">*</span></label>
+						      <div class="form-group">
+				            <div class="form-check form-check-inline">
+				                <input class="form-check-input" type="radio" id="siResidencia" formControlName="residencia" value="true">
+				                <label class="form-check-label" for="siResidencia">Si</label>
+				            </div>
+
+                   <div class="form-check form-check-inline">
+				                <input class="form-check-input" type="radio" id="noResidencia" formControlName="residencia" value="false" checked>
+				                <label class="form-check-label" for="noResidencia">No</label>
+				           </div>
+                  </div>
+                <!-- </div> -->
+              </div>
+
             </div>
 
-            <div class="form-floating">
-              <!-- <div class="row mt-4"> -->
-              <div class="col-sm-12  mt-2  ">
-                <label for="floatingInput">Decripción: <span class="text-danger">*</span></label>
-                <input
-                  type="text"
-                  formControlName="descripcion"
-                  class="form-control mt-2 "
-                  placeholder="Descripción del dato"
-                >
-              </div>
+            <div class="row">
+              <div class="form-group col-md-12 mt-2">
+                <label for="resumen" class="col-form-label">Resumen:</label>
+                <textarea class="form-control" id="descripcion" formControlName="resumen" rows="1" cols="50" placeholder="Añadir breve descripción"></textarea>
+            </div>
             </div>
 
           </div>
@@ -78,5 +166,5 @@
       </div>
 
 
-    </div>
+    <!-- </div> -->
   </div>

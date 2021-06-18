@@ -5,12 +5,14 @@ import { DatosRoutingModule } from './datos-routing.module';
 import { AgregarComponent } from './pages/agregar/agregar.component';
 import { ListarComponent } from './pages/listar/listar.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TablaComponent } from './pages/tabla/tabla.component';
 
 
 @NgModule({
   declarations: [
     AgregarComponent,
-    ListarComponent
+    ListarComponent,
+    TablaComponent
   ],
   imports: [
     CommonModule,

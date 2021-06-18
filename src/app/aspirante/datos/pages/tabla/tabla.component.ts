@@ -5,14 +5,13 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { Dato } from '../../interfaces/dato';
 import { DatosService } from '../../services/datos.service';
 
-@Component({
-  selector: 'app-listar',
-  templateUrl: './listar.component.html',
-  styleUrls: ['./listar.component.css']
-})
-export class ListarComponent implements OnInit {
 
-  // date: Date= new Date
+@Component({
+  selector: 'app-tabla',
+  templateUrl: './tabla.component.html',
+  styleUrls: ['./tabla.component.css']
+})
+export class TablaComponent implements OnInit {
   get usuario() {
     return this.authSvc.usuario;
   }
@@ -32,6 +31,7 @@ export class ListarComponent implements OnInit {
     id: undefined,
   }
 
+
   constructor(
     private authSvc: AuthService,
     private datosService: DatosService,
@@ -40,7 +40,11 @@ export class ListarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.activatedRoute.params
+    .pipe(switchMap(({ id }) => this.datosService.getDatoPorId(2)))
+    .subscribe((dato) => this.datos = (dato));
+    console.log(this.usuario.id)
+    console.log(this.datos)
 
   }
 
