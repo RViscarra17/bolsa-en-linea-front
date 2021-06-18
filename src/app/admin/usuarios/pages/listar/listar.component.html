@@ -17,8 +17,10 @@
           <td>{{user.nombres}}</td>
           <td>{{user.apellidos}}</td>
           <td>{{user.correo}}</td>
-          <td><span *ngIf="user.es_admin == 1; else elseBlock">Admin</span></td>
-          <ng-template #elseBlock>Otro</ng-template>
+          <!-- <td><span *ngIf="user.es_admin == 1; else elseBlock">Admin</span></td>
+          <ng-template #elseBlock>Otro</ng-template> -->
+
+          <td>{{ nombreRol(user.id_tipo_usuario )}}</td>
           <td>
             <a
               class="btn btn-outline-dark"

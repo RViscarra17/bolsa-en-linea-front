@@ -23,7 +23,27 @@ export class ListarComponent implements OnInit {
     this.usuariosService
       .getUsuarios()
       .subscribe((usuarios) => (this.usuarios = usuarios));
+
+      // console.log(this.usuario);
+      
   }
+
+  nombreRol(id: number|undefined) {
+    switch (id) {
+      case 1:
+        return "Administrador";
+      case 2:
+        return "Postulante";
+      case 3:
+        return "Empresa";
+      case 4:
+        return "Evaluador RRHH";
+      default:
+        return "Otro";
+    }
+  }
+
+  
   borrarUsuario(user: Usuario, event: any) {
     console.log(event.parentNode.parentNode.parentNode);
 
@@ -38,6 +58,7 @@ export class ListarComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.usuariosService.borrarUsuario(user.id!).subscribe(() => {
+          this.usuarios = [];
           this.usuariosService
             .getUsuarios()
             .subscribe((usuarios) => (this.usuarios = usuarios));

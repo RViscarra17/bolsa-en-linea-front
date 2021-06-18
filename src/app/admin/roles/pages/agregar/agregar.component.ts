@@ -39,7 +39,7 @@ export class AgregarComponent implements OnInit {
     this.activatedRoute.params
       .pipe(switchMap(({ id }) => this.rolesService.getRolPorId(id)))
       .subscribe((rol) => this.formularioRoles.reset(rol));
-    console.log(this.formularioRoles);
+    // console.log(this.formularioRoles);
   }
 
   guardar() {
@@ -58,7 +58,7 @@ export class AgregarComponent implements OnInit {
           this.activatedRoute.params
             .pipe(switchMap(({ id }) => this.rolesService.getRolPorId(id)))
             .subscribe((rol) => this.formularioRoles.reset(rol));
-          console.log(this.formularioRoles);
+          // console.log(this.formularioRoles);
         });
       Swal.fire({
         title: 'Registro editado!',
@@ -69,14 +69,15 @@ export class AgregarComponent implements OnInit {
       this.rolesService
       .agregarRol(this.formularioRoles.value)
       .subscribe(() => {
-        this.router.navigate(['admin/roles']);
+        Swal.fire({
+          title: 'Registro guardado!',
+          icon: 'success',
+          confirmButtonText: 'Ok',
+        }).then((_) => {
+          this.router.navigate(['admin/roles']);
+        });
       });
-
-      Swal.fire({
-        title: 'Registro guardado!',
-        icon: 'success',
-        confirmButtonText: 'Ok',
-      });
+      
     }
   }
 

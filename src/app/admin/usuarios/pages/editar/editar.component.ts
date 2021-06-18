@@ -20,10 +20,11 @@ export class EditarComponent implements OnInit {
     nombres: ['', Validators.required],
     apellidos: ['', Validators.required],
     correo: ['', [Validators.required, Validators.email]],
-    es_admin: [ '', Validators.required],
+    id_tipo_usuario: [ '', Validators.required],
   });
 
   roles: Rol[] = []; 
+  user!: Usuario;
 
   // usuario: Usuario = this.miFormulario.value;
   // usuario: Usuario = this.miFormulario.value
@@ -45,7 +46,14 @@ export class EditarComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params
       .pipe(switchMap(({ id }) => this.usuariosService.getUsuarioPorId(id)))
-      .subscribe((usuario) => this.miFormulario.reset(usuario));
+      .subscribe((usuario) =>{
+        this.user = usuario;
+        this.miFormulario.reset(usuario)
+        console.log(usuario);
+        
+      }
+      
+      );
 
     this.rolService.getRoles().subscribe(
       roles => this.roles = roles
@@ -77,6 +85,11 @@ export class EditarComponent implements OnInit {
       icon: 'success',
       confirmButtonText: 'Ok',
     });
+  }
+
+
+  selectedRol(id: number | undefined) {
+    return id === this.user.id_tipo_usuario? true:false;
   }
 
   limpiar() {

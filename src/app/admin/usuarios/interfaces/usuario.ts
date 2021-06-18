@@ -10,5 +10,5 @@ export interface Usuario {
   // bloqueado:         number;
   // created_at:        Date;
   // updated_at:        Date;
-  // id_tipo_usuario:   null;
+  id_tipo_usuario?:   number;
 }

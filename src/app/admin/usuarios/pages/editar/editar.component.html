@@ -58,11 +58,11 @@
               <div class="col-sm-12 mt-2">
                 <label for="floatingInput">Rol: <span class="text-danger">*</span></label>
                 <select
-                  formControlName="es_admin"
+                  formControlName="id_tipo_usuario"
                   class="form-select"
                   id="inputGroupSelect01"
                 >
-                  <option selected="true" value="">Seleccione una opción</option>
+                  <!-- <option selected="true" value="">Seleccione una opción</option> -->
                   <option *ngFor="let rol of roles" [value]="rol.id">{{ rol.display_name }}</option>
                 </select>
               </div>

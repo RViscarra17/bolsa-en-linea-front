@@ -12,8 +12,8 @@ const routes: Routes = [
     component: HomeComponent,
     // pathMatch: 'full',
     canActivate: [AuthTokenGuard],
-    canLoad: [AuthTokenGuard],
-    canActivateChild: [AuthTokenGuard],
+    // canLoad: [AuthTokenGuard],
+    // canActivateChild: [AuthTokenGuard],
     children: [
       {
         path: "",
