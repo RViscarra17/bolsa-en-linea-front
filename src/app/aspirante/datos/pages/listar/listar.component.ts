@@ -40,6 +40,9 @@ export class ListarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.activatedRoute.params
+    .pipe(switchMap(({ id }) => this.datosService.getDatoPorId(10)))
+    .subscribe((dato) => this.datos = (dato));
 
 
   }

@@ -41,7 +41,7 @@ export class TablaComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params
-    .pipe(switchMap(({ id }) => this.datosService.getDatoPorId(2)))
+    .pipe(switchMap(({ id }) => this.datosService.getDatoPorId(10)))
     .subscribe((dato) => this.datos = (dato));
     console.log(this.usuario.id)
     console.log(this.datos)

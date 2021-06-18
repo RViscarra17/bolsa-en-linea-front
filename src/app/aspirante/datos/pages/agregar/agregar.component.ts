@@ -21,9 +21,9 @@ export class AgregarComponent implements OnInit {
     nit: ['', [Validators.required, Validators.pattern('[^[0-9]{4}[\-][0-9]{6}[\-][0-9]{3}[\-][0-9]$]')]],
     fecha_nacimiento: ['', [Validators.required]],
     genero: ['0', Validators.required],
-    viajar:['false',Validators.required],
-    vehiculo:['false', Validators.required],
-    residencia:['false', Validators.required],
+    disponibilidad_viaje:['0',Validators.required],
+    posee_vehiculo:['0', Validators.required],
+    puede_cambiar_res:['0', Validators.required],
     resumen:[''],
     id_usuario:[this.usuario.id]
   });

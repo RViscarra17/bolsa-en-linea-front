@@ -1,7 +1,7 @@
   <div class="row ">
   <h2 class="text-center">
     {{ ( formularioDatos.value.id )? 'Editar' : 'Registrar' }}
-    Dato</h2>
+    Datos Personales</h2>
   <div class=" mt-4 offset-md-1  offset-lg-1 col-md-10 col-lg-10 col-sm-12  justify-content-center">
     <div class="card">
       <div class="card-header ">
@@ -84,15 +84,15 @@
               <div class="form-group  col-md-4 mt-2">
                 <!-- <div class="row mt-4"> -->
                 <!-- <div class=" col-md-6 mt-1  "> -->
-                  <label for="viajar" class="col-form-label">Disponibilidad de viajar: <span class="text-danger">*</span></label>
+                  <label for="disponibilidad_viaje" class="col-form-label">Disponibilidad de viajar: <span class="text-danger">*</span></label>
 						      <div class="form-group">
 				            <div class="form-check form-check-inline">
-				                <input class="form-check-input" type="radio" id="siViaja" formControlName="viajar" value="true">
+				                <input class="form-check-input" type="radio" id="siViaja" formControlName="disponibilidad_viaje" value=1>
 				                <label class="form-check-label" for="siViaja">Si</label>
 				            </div>
 
                    <div class="form-check form-check-inline">
-				                <input class="form-check-input" type="radio" id="noViaja" formControlName="viajar" value="false" checked>
+				                <input class="form-check-input" type="radio" id="noViaja" formControlName="disponibilidad_viaje" value=0 checked>
 				                <label class="form-check-label" for="noViaja">No</label>
 				           </div>
                   </div>
@@ -102,15 +102,15 @@
               <div class="form-group col-md-4  mt-2">
                 <!-- <div class="row mt-4"> -->
                 <!-- <div class="col-md-6  mt-1  "> -->
-                  <label for="vehiculo" class="col-form-label">Posee vehículo: <span class="text-danger">*</span></label>
+                  <label for="posee_vehiculo" class="col-form-label">Posee vehículo: <span class="text-danger">*</span></label>
 						      <div class="form-group">
 				            <div class="form-check form-check-inline">
-				                <input class="form-check-input" type="radio" id="siVehiculo" formControlName="vehiculo" value="true">
+				                <input class="form-check-input" type="radio" id="siVehiculo" formControlName="posee_vehiculo" value=1 >
 				                <label class="form-check-label" for="siVehiculo">Si</label>
 				            </div>
 
                    <div class="form-check form-check-inline">
-				                <input class="form-check-input" type="radio" id="noVehiculo" formControlName="vehiculo" value="false" checked>
+				                <input class="form-check-input" type="radio" id="noVehiculo" formControlName="posee_vehiculo" value=0 checked>
 				                <label class="form-check-label" for="noVehiculo">No</label>
 				           </div>
                   </div>
@@ -120,15 +120,15 @@
               <div class="form-group col-md-4  mt-2">
                 <!-- <div class="row mt-4"> -->
                 <!-- <div class="col-md-6  mt-1  "> -->
-                  <label for="residencia" class="col-form-label">Puede cambiar de residencia: <span class="text-danger">*</span></label>
+                  <label for="puede_cambiar_res" class="col-form-label">Puede cambiar de residencia: <span class="text-danger">*</span></label>
 						      <div class="form-group">
 				            <div class="form-check form-check-inline">
-				                <input class="form-check-input" type="radio" id="siResidencia" formControlName="residencia" value="true">
+				                <input class="form-check-input" type="radio" id="siResidencia" formControlName="puede_cambiar_res" value=1>
 				                <label class="form-check-label" for="siResidencia">Si</label>
 				            </div>
 
                    <div class="form-check form-check-inline">
-				                <input class="form-check-input" type="radio" id="noResidencia" formControlName="residencia" value="false" checked>
+				                <input class="form-check-input" type="radio" id="noResidencia" formControlName="puede_cambiar_res" value=0 checked>
 				                <label class="form-check-label" for="noResidencia">No</label>
 				           </div>
                   </div>
