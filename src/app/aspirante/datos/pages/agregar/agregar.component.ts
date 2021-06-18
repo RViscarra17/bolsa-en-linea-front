@@ -12,6 +12,9 @@ import { DatosService } from '../../services/datos.service';
   styleUrls: ['./agregar.component.css']
 })
 export class AgregarComponent implements OnInit {
+  get usuario() {
+    return this.authSvc.usuario;
+  }
   formularioDatos: FormGroup = this.fb.group({
     id: [''],
     dui: ['', [Validators.required, Validators.pattern('^[0-9]{8}[\-][0-9]$')]],
@@ -22,7 +25,7 @@ export class AgregarComponent implements OnInit {
     vehiculo:['false', Validators.required],
     residencia:['false', Validators.required],
     resumen:[''],
-    id_usuario:['3']
+    id_usuario:[this.usuario.id]
   });
 
 
