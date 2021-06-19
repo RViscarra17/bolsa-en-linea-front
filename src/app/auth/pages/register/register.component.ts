@@ -51,19 +51,13 @@ export class RegisterComponent implements OnInit {
         })
       },
       (error) => {
-        // console.log(error.error);
-        let doto: string = "";
-        const errArr = Object.values(error.error.errors);
-
-        errArr.forEach((value) => {
-          doto += `<span class=\"text-danger\">${value}<br/></span>`;
-        });
-        Swal.fire({
-          title: "Error",
-          html: `${doto}`,
-          icon: "error",
-          cancelButtonText: "Ok",
-        });
+          Swal.fire({
+            title: "Error",
+            // html: `${doto}`,
+            text: "Ocurrio un error",
+            icon: "error",
+            cancelButtonText: "Ok",
+          });
       }
     );
 

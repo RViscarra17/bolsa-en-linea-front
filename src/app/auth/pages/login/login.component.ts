@@ -30,20 +30,11 @@ export class LoginComponent implements OnInit {
     this.authService.login(data).subscribe(
       (_) => {
         this.router.navigate(["/"]);
-
-        // this.authService.user().subscribe();
-
       },
       (error) => {
-        let doto: string = "";
-        const errArr = Object.values(error?.error?.errors);
-
-        errArr.forEach((value) => {
-          doto += `<span class=\"text-danger\">${value}<br/></span>`;
-        });
         Swal.fire({
           title: "Error",
-          html: `${doto}`,
+          text: "Correo o contraseña incorrectos",
           icon: "error",
           cancelButtonText: "Ok",
         });

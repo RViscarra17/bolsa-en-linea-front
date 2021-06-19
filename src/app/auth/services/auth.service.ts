@@ -31,7 +31,10 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(data: Usuario): Observable<Toke> {
-    return this.http.post<Toke>(`${this._url}/login`, data).pipe(
+    const headers = new HttpHeaders()
+      .set("Accept", "application/json")
+      .set("Origin", "");
+    return this.http.post<Toke>(`${this._url}/login`, data, { headers }).pipe(
       tap((resp) => {
         const { access_token } = resp;
         this._token = access_token;
