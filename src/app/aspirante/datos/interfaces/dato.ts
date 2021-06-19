@@ -4,10 +4,10 @@ export interface Dato {
   dui:                  string;
   nit:                  string;
   fecha_nacimiento:     String;
-  resumen:              string;
+  resumen?:              string;
   disponibilidad_viaje: boolean;
   posee_vehiculo:       boolean;
   puede_cambiar_res:    boolean;
-  id_usuario:           number;
+  id_usuario?:           number;
   habilidades?:          any[];
 }

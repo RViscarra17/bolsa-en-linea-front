@@ -51,4 +51,6 @@ export interface Usu {
   id: number;
   nombre: string;
   tipo:   string;
+  id_perfil?: number;
+
 }

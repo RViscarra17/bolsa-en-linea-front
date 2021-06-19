@@ -12,12 +12,22 @@ import { DatosService } from '../../services/datos.service';
   styleUrls: ['./agregar.component.css']
 })
 export class AgregarComponent implements OnInit {
+  get usuario() {
+    return this.authSvc.usuario;
+  }
   formularioDatos: FormGroup = this.fb.group({
     id: [''],
-    name: ['', Validators.required],
-    display_name: ['', Validators.required],
-    descripcion: ['', Validators.required],
+    dui: ['', [Validators.required, Validators.pattern('^[0-9]{8}[\-][0-9]$')]],
+    nit: ['', [Validators.required, Validators.pattern('[^[0-9]{4}[\-][0-9]{6}[\-][0-9]{3}[\-][0-9]$]')]],
+    fecha_nacimiento: ['', [Validators.required]],
+    genero: ['0', Validators.required],
+    disponibilidad_viaje:['0',Validators.required],
+    posee_vehiculo:['0', Validators.required],
+    puede_cambiar_res:['0', Validators.required],
+    resumen:[''],
+    id_usuario:[this.usuario.id]
   });
+
 
   constructor(
     private authSvc: AuthService,
@@ -38,9 +48,8 @@ export class AgregarComponent implements OnInit {
   }
 
   guardar() {
-    if (this.formularioDatos.value.name.trim().length === 0) {
-      return;
-    }
+    console.log(this.formularioDatos)
+
     if (this.formularioDatos.value.id) {
       // Actualizar
       this.datosService
@@ -78,5 +87,6 @@ export class AgregarComponent implements OnInit {
   limpiar() {
     this.formularioDatos.reset();
   }
+
 
 }

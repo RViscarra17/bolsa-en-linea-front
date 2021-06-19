@@ -1,0 +1,57 @@
+<div class="table-responsive mt-2">
+  <table class="table caption-top">
+    <thead class="table-dark">
+      <tr>
+        <th class="col-md-6" scope="col"><span class="p-1"></span></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">DUI:</th>
+        <td>{{ datos.dui }}</td>
+      </tr>
+      <tr>
+        <th scope="row">NIT:</th>
+        <td>{{ datos.nit }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Fecha de nacimiento:</th>
+        <td>{{ datos.fecha_nacimiento }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Genero:</th>
+        <td>{{ datos.genero }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Disponibilidad de viaje:</th>
+        <td>
+          <span *ngIf="datos.disponibilidad_viaje == true; else elseBlock"
+            >Si</span
+          >
+        </td>
+        <ng-template #elseBlock>No</ng-template>
+      </tr>
+      <tr>
+        <th scope="row">Posee vehículo:</th>
+        <td>
+          <span *ngIf="datos.posee_vehiculo == true; else elseBlock">Si</span>
+        </td>
+        <ng-template #elseBlock>No</ng-template>
+      </tr>
+      <tr>
+        <th scope="row">Puede cambiar de residencia:</th>
+        <td>
+          <span *ngIf="datos.puede_cambiar_res == true; else elseBlock"
+            >Si</span
+          >
+        </td>
+        <ng-template #elseBlock>No</ng-template>
+      </tr>
+          <tr>
+        <th scope="row">Resumen:</th>
+        <td>{{ datos.resumen }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
