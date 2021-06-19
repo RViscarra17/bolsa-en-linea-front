@@ -35,15 +35,17 @@ export class ListarComponent implements OnInit {
   constructor(
     private authSvc: AuthService,
     private datosService: DatosService,
+    private userService:AuthService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
+    // id_perfil: this.usuario.id_perfil
     this.activatedRoute.params
-    .pipe(switchMap(({ id }) => this.datosService.getDatoPorId(10)))
+    .pipe(switchMap(({ id }) => this.datosService.getDatoPorId(this.usuario.id_perfil)))
     .subscribe((dato) => this.datos = (dato));
-
+    console.log()
 
   }
 

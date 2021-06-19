@@ -18,6 +18,10 @@ import { TablaComponent } from './pages/tabla/tabla.component';
     CommonModule,
     ReactiveFormsModule,
     DatosRoutingModule
+
+  ],
+  exports:[
+    TablaComponent
   ]
 })
 export class DatosModule { }

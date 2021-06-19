@@ -19,7 +19,13 @@ export class DatosService {
       .set("Authorization", `Bearer ${this._token || ""}`);
     return this.http.get<Dato[]>(`${this._url}/perfiles`, { headers });
   }
-  getDatoPorId(id: number): Observable<Dato> {
+  getPerfil(): Observable<Dato> {
+    const headers = new HttpHeaders()
+      .set("Accept", "application/json")
+      .set("Authorization", `Bearer ${this._token || ""}`);
+    return this.http.get<Dato>(`${this._url}/utilidades/usuario`, { headers });
+  }
+  getDatoPorId(id?: number): Observable<Dato> {
     const headers = new HttpHeaders()
       .set("Accept", "application/json")
       .set("Authorization", `Bearer ${this._token || ""}`);
