@@ -17,7 +17,7 @@ import { AuthService } from "../services/auth.service";
 @Injectable({
   providedIn: "root",
 })
-export class AuthTokenGuard implements CanActivate, CanActivateChild, CanLoad {
+export class AuthTokenGuard implements CanActivate {
   constructor(private auS: AuthService, private router: Router) {}
 
   canActivate(): Observable<boolean> | boolean {
@@ -30,24 +30,24 @@ export class AuthTokenGuard implements CanActivate, CanActivateChild, CanLoad {
       })
     );
   }
-  canActivateChild(): Observable<boolean> | boolean {
-    return this.auS.user().pipe(
-      tap((valido) => {
-        this.auS.obtenerRol().subscribe();
-        if (!valido) {
-          this.router.navigateByUrl("/auth/login");
-        }
-      })
-    );
-  }
-  canLoad(): Observable<boolean> | boolean {
-    return this.auS.user().pipe(
-      tap((valido) => {
-        this.auS.obtenerRol().subscribe();
-        if (!valido) {
-          this.router.navigateByUrl("/auth/login");
-        }
-      })
-    );
-  }
+  // canActivateChild(): Observable<boolean> | boolean {
+  //   return this.auS.user().pipe(
+  //     tap((valido) => {
+  //       this.auS.obtenerRol().subscribe();
+  //       if (!valido) {
+  //         this.router.navigateByUrl("/auth/login");
+  //       }
+  //     })
+  //   );
+  // }
+  // canLoad(): Observable<boolean> | boolean {
+  //   return this.auS.user().pipe(
+  //     tap((valido) => {
+  //       this.auS.obtenerRol().subscribe();
+  //       if (!valido) {
+  //         this.router.navigateByUrl("/auth/login");
+  //       }
+  //     })
+  //   );
+  // }
 }
