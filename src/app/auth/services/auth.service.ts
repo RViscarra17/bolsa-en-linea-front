@@ -33,8 +33,8 @@ export class AuthService {
   login(data: Usuario): Observable<Toke> {
     const headers = new HttpHeaders()
       .set("Accept", "application/json")
-      .set("Origin", "");
-    return this.http.post<Toke>(`${this._url}/login`, data, { headers }).pipe(
+    
+      return this.http.post<Toke>(`${this._url}/login`, data, { headers }).pipe(
       tap((resp) => {
         const { access_token } = resp;
         this._token = access_token;
